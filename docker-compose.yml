@@ -15,6 +15,11 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+        test: rabbitmq-diagnostics -q ping
+        interval: 15s
+        timeout: 30s
+        retries: 5
 
   recipe-service:
     image: ghcr.io/thi-cnd/recipe_service:latest
@@ -33,3 +38,28 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+
+  collection-service:
+    image: ghcr.io/thi-cnd/collection_service:latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+     postgres:
+       condition: service_started
+     rabbitmq:
+       condition: service_healthy
+    
+  notification-service:
+    image: ghcr.io/thi-cnd/notification_service:latest
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    depends_on:
+     postgres:
+       condition: service_started
+     rabbitmq:
+       condition: service_healthy
+  
