@@ -43,8 +43,17 @@ services:
     image: ghcr.io/thi-cnd/collection_service:latest
     ports:
       - "8000:8000"
-    env_file:
-      - .env
+    environment:
+        SECRET_KEY_DJANGO=django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg
+        DB_NAME=recipe
+        DB_USER=postgres
+        DB_PASSWORD=qweasdyxc
+        DB_HOST=postgres
+        DB_PORT=5432
+        RABBITMQ_USER=guest
+        RABBITMQ_PASSWORD=guest
+        RABBITMQ_HOST=rabbitmq
+    
     restart: unless-stopped
     depends_on:
      postgres:
