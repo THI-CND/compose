@@ -53,6 +53,7 @@ services:
         RABBITMQ_USER=guest
         RABBITMQ_PASSWORD=guest
         RABBITMQ_HOST=rabbitmq
+        USE_TEST_DB=False #Test Database
     
     restart: unless-stopped
     depends_on:
