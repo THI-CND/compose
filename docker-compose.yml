@@ -67,11 +67,9 @@ services:
     ports:
       - "8081:8081"
     environment:
+        DB_URL: jdbc:postgresql://postgres:5432/recipe
         DB_NAME: recipe
         DB_USER: postgres
-        DB_PASSWORD: qweasdyxc
-        DB_HOST: postgres
-        DB_PORT: 5432
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
