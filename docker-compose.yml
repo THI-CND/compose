@@ -1,13 +1,13 @@
 services:
   postgres:
-    image: postgres
+    build: .
     restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: recipe
+      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,user
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -45,16 +45,15 @@ services:
       - "8000:8000"
     environment:
         SECRET_KEY_DJANGO: django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg
-        DB_NAME: recipe
+        DB_NAME: collection
         DB_USER: postgres
-        DB_PASSWORD: qweasdyxc
+        DB_PASSWORD: password
         DB_HOST: postgres
         DB_PORT: 5432
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
         USE_TEST_DB: False #Test Database
-    
     restart: unless-stopped
     depends_on:
      postgres:
@@ -67,9 +66,9 @@ services:
     ports:
       - "8081:8081"
     environment:
-        DB_URL: jdbc:postgresql://postgres:5432/recipe
-        DB_NAME: recipe
+        DB_URL: jdbc:postgresql://postgres:5432/notification
         DB_USER: postgres
+        DB_PASSWORD: password
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
@@ -90,7 +89,7 @@ services:
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: password
-      DB_NAME: recipe
+      DB_NAME: user
       RABBIT_HOST: rabbitmq
       RABBIT_PORT: 5672
       RABBIT_USER: guest
