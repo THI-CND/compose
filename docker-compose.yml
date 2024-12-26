@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,user
+      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,user,ingredient,review
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -100,5 +100,39 @@ services:
        condition: service_started
      rabbitmq:
        condition: service_healthy
+
+  ingredient-service:
+    image: ghcr.io/thi-cnd/ingredient_service:latest
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/ingredient
+      DB_USER: postgres
+      DB_PASSWORD: password
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  review-service:
+    image: ghcr.io/thi-cnd/review_service:latest
+    restart: unless-stopped
+    ports:
+      - "8084:8084"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/review
+      DB_USER: postgres
+      DB_PASSWORD: password
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+      - postgres
+      - rabbitmq
 
   
