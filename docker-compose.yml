@@ -43,6 +43,7 @@ services:
     image: ghcr.io/thi-cnd/collection_service:latest
     ports:
       - "8000:8000"
+      - "50051:50051" 
     environment:
         SECRET_KEY_DJANGO: django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg
         DB_NAME: collection
@@ -53,7 +54,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
-        USE_TEST_DB: False #Test Database
+        USE_TEST_DB: False
     restart: unless-stopped
     depends_on:
      postgres:
@@ -65,6 +66,7 @@ services:
     image: ghcr.io/thi-cnd/notification_service:latest
     ports:
       - "8081:8081"
+      - "9091:9091"
     environment:
         DB_URL: jdbc:postgresql://postgres:5432/notification
         DB_USER: postgres
