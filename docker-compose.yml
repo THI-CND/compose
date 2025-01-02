@@ -65,8 +65,8 @@ services:
   notification-service:
     image: ghcr.io/thi-cnd/notification_service:latest
     ports:
-      - "8081:8081"
-      - "9091:9091"
+      - "8081:8080"
+      - "9091:9090"
     environment:
         DB_URL: jdbc:postgresql://postgres:5432/notification
         DB_USER: postgres
@@ -74,6 +74,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        JAVA_TOOL_OPTIONS: "-XX:UseSVE=0" #Fix for ARM64 Bug
     restart: unless-stopped
     depends_on:
      postgres:
