@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,user
+      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,users
 
   rabbitmq:
     image: rabbitmq:3-management
