@@ -43,6 +43,7 @@ services:
     image: ghcr.io/thi-cnd/collection_service:latest
     ports:
       - "8000:8000"
+      - "50051:50051" 
     environment:
         SECRET_KEY_DJANGO: django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg
         DB_NAME: collection
@@ -53,7 +54,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
-        USE_TEST_DB: False #Test Database
+        USE_TEST_DB: False
     restart: unless-stopped
     depends_on:
      postgres:
@@ -64,7 +65,8 @@ services:
   notification-service:
     image: ghcr.io/thi-cnd/notification_service:latest
     ports:
-      - "8081:8081"
+      - "8081:8080"
+      - "9091:9090"
     environment:
         DB_URL: jdbc:postgresql://postgres:5432/notification
         DB_USER: postgres
@@ -72,6 +74,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        JAVA_TOOL_OPTIONS: "-XX:UseSVE=0" #Fix for ARM64 Bug
     restart: unless-stopped
     depends_on:
      postgres:
@@ -100,5 +103,39 @@ services:
        condition: service_started
      rabbitmq:
        condition: service_healthy
+
+  ingredient-service:
+    image: ghcr.io/thi-cnd/ingredient_service:latest
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/ingredient
+      DB_USER: postgres
+      DB_PASSWORD: password
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  review-service:
+    image: ghcr.io/thi-cnd/review_service:latest
+    restart: unless-stopped
+    ports:
+      - "8084:8084"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/review
+      DB_USER: postgres
+      DB_PASSWORD: password
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+      - postgres
+      - rabbitmq
 
   
