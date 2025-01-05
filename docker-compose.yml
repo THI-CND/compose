@@ -92,7 +92,7 @@ services:
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: password
-      DB_NAME: user
+      DB_NAME: users
       RABBIT_HOST: rabbitmq
       RABBIT_PORT: 5672
       RABBIT_USER: guest
