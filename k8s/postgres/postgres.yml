@@ -75,7 +75,7 @@ spec:
   - protocol: TCP
     port: 5432 
     targetPort: 5432 
-  type: LoadBalancer # Or NodePort, LoadBalancer, depending on your needs
+  type: ClusterIP # Or NodePort, LoadBalancer, depending on your needs
 
 --- 
 apiVersion: v1
