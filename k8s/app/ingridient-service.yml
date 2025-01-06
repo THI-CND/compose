@@ -1,0 +1,51 @@
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingredient-service
+  namespace: recipe-app
+spec:
+  ports:
+    - port: 8083
+      name: http
+  selector:
+    app: ingredient-service
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingredient-service
+  namespace: recipe-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ingredient-service
+  template:
+    metadata:
+      labels:
+        app: ingredient-service
+    spec:
+      containers:
+        - name: ingredient-service
+          image: ghcr.io/thi-cnd/ingredient_service:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres:5432/ingredient
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: password
+            - name: RABBIT_HOST
+              value: rabbitmq
+            - name: RABBIT_PORT
+              value: "5672"
+            - name: RABBIT_USER
+              value: guest
+            - name: RABBIT_PASSWORD
+              value: guest
+
