@@ -9,6 +9,14 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,users,ingredient,review
 
+  redis:
+    image: redis/redis-stack:latest
+    restart: unless-stopped
+    command : redis-server --requirepass password
+    ports: 
+      - "6379:6379"
+      - "8001:8001"
+  
   rabbitmq:
     image: rabbitmq:3-management
     restart: unless-stopped
@@ -42,7 +50,7 @@ services:
 
   collection-service:
     pull_policy: always
-    image: ghcr.io/thi-cnd/collection_service:latest
+    image: ghcr.io/thi-cnd/collection_service:v1.2.0-next.9 
     ports:
       - "8000:8000"
       - "50051:50051" 
@@ -143,5 +151,18 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+
+  feed-service:
+    image: ghcr.io/thi-cnd/feed_service:v0.1
+    restart: unless-stopped
+    environment:
+      RECIPE_SERVICE_URL: http://recipe-service:8080/api/v1/recipe
+      COLLECTION_SERVICE_URL: http://collection-service:8000/collections
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: password
+    ports:
+      - "8085:8080"
+
 
   
