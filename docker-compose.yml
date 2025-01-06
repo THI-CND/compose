@@ -64,6 +64,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        RABBITMQ_EXCHANGE: recipemanagement
         USE_TEST_DB: False
     restart: unless-stopped
     depends_on:
@@ -85,6 +86,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        RABBITMQ_EXCHANGE: recipemanagement
         JAVA_TOOL_OPTIONS: "-XX:UseSVE=0" #Fix for ARM64 Bug
     restart: unless-stopped
     depends_on:
