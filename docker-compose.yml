@@ -65,6 +65,7 @@ services:
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
         RABBITMQ_EXCHANGE: recipemanagement
+        RABBITMQ_ROUTING_KEYS_COLLECTION: collection.created,collection.updated,collection.deleted
         USE_TEST_DB: False
     restart: unless-stopped
     depends_on:
@@ -86,7 +87,14 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        RABBIT_PORT: 5672
         RABBITMQ_EXCHANGE: recipemanagement
+        RABBITMQ_ROUTING_KEYS_COLLECTION: collection.created,collection.updated,collection.deleted
+        RABBITMQ_ROUTING_KEYS_REVIEW: review.created
+        RABBITMQ_ROUTING_KEYS_USER: users.count
+        RABBITMQ_QUEUE_COLLECTION: collection.queue
+        RABBITMQ_QUEUE_REVIEW: review.queue
+        RABBITMQ_QUEUE_USER: user.queue
         JAVA_TOOL_OPTIONS: "-XX:UseSVE=0" #Fix for ARM64 Bug
     restart: unless-stopped
     depends_on:
