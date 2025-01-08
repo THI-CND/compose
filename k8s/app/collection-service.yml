@@ -55,8 +55,12 @@ spec:
               value: "guest"
             - name: RABBITMQ_HOST
               value: "rabbitmq"
+            - name: RABBITMQ_PORT
+              value: "5672"
             - name: RABBITMQ_EXCHANGE
               value: "recipemanagement"
+            - name: RABBITMQ_ROUTING_KEYS_COLLECTION
+              value: "collection.created,collection.updated,collection.deleted"
             - name: USE_TEST_DB
               value: "False"
 
