@@ -53,3 +53,15 @@ spec:
               value: "recipemanagement"
             - name: RABBITMQ_PORT
               value: "5672"
+            - name: RABBITMQ_ROUTING_KEYS_COLLECTION
+              value: "collection.created,collection.updated,collection.deleted"
+            - name: RABBITMQ_ROUTING_KEYS_REVIEW
+              value: "review.created"
+            - name: RABBITMQ_ROUTING_KEYS_USER
+              value: "users.count"
+            - name: RABBITMQ_QUEUE_COLLECTION
+              value: "collection.queue"
+            - name: RABBITMQ_QUEUE_REVIEW
+              value: "review.queue"
+            - name: RABBITMQ_QUEUE_USER
+              value: "user.queue"
