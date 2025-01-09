@@ -64,6 +64,7 @@ services:
         RABBITMQ_USER: guest
         RABBITMQ_PASSWORD: guest
         RABBITMQ_HOST: rabbitmq
+        RABBITMQ_PORT: 5672
         RABBITMQ_EXCHANGE: recipemanagement
         RABBITMQ_ROUTING_KEYS_COLLECTION: collection.created,collection.updated,collection.deleted
         USE_TEST_DB: False
