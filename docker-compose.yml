@@ -131,7 +131,8 @@ services:
     image: ghcr.io/thi-cnd/ingredient_service:latest
     restart: unless-stopped
     ports:
-      - "8083:8083"
+      - "8083:8080"
+      - "9093:9090"
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/ingredient
       DB_USER: postgres
@@ -149,7 +150,8 @@ services:
     image: ghcr.io/thi-cnd/review_service:latest
     restart: unless-stopped
     ports:
-      - "8084:8084"
+      - "8084:8080"
+      - "9094:9090"
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/review
       DB_USER: postgres
