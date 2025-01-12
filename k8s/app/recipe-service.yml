@@ -50,6 +50,18 @@ spec:
               value: "guest"
             - name: RABBIT_PASSWORD
               value: "guest"
+            - name: INGREDIENT_SERVICE_ADDRESS
+              value: "ingredient-service:9090"
+            - name: RABBIT_EXCHANGE
+              value: "recipemanagement"
+            - name: REDIS_HOST
+              value: "redis"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              value: "password"
+            - name: REDIS_DATABASE
+              value: "1"
 
 ---
 apiVersion: networking.k8s.io/v1
