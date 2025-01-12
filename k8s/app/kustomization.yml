@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - collection.service.yml
+  - ingredient-service.yml
+  - user-service.yml
+  - recipe-service.yml
+  - review-service.yml
+  - feed-service.yml
+  - notification-service.yml
