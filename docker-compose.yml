@@ -115,7 +115,7 @@ services:
     image: ghcr.io/thi-cnd/user_service:latest
     ports: 
       - 8082:8082
-      - 9091:8081
+      - 9092:8081
     environment:
       GIN_MODE: debug
       DB_HOST: postgres
@@ -173,7 +173,7 @@ services:
       - rabbitmq
 
   feed-service:
-    image: ghcr.io/thi-cnd/feed_service:latest
+    image: ghcr.io/thi-cnd/feed_service:v0.8.1
     restart: unless-stopped
     environment:
       RECIPE_SERVICE_URL: recipe-service:9090
@@ -181,6 +181,10 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: password
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
     ports:
       - "8085:8080"
 
