@@ -8,8 +8,10 @@ metadata:
 spec:
   ports:
     - port: 8000
+      targetPort: 8000
       name: http
     - port: 50051
+      targetPort: 50051
       name: grpc
   selector:
     app: collection-service
