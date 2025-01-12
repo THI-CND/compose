@@ -75,7 +75,7 @@ services:
         RABBITMQ_EXCHANGE: recipemanagement
         RABBITMQ_ROUTING_KEYS_COLLECTION: collection.created,collection.updated,collection.deleted
         GRPC_HOST_RECIPE_SERVICE: recipe-service
-        GRPC_PORT_RECIPE_SERVICE: 9098
+        GRPC_PORT_RECIPE_SERVICE: 9090
     restart: unless-stopped
     depends_on:
      postgres:
