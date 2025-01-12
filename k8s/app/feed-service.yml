@@ -45,3 +45,24 @@ spec:
               value: "6379"
             - name: REDIS_PASSWORD
               value: "password"
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: feed-service-ingress
+  namespace: recipe-app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: feed-service.k8s.bieggerm.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: feed-service
+                port:
+                  number: 8085

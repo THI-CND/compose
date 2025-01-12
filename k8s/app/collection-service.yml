@@ -64,3 +64,23 @@ spec:
             - name: USE_TEST_DB
               value: "False"
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: collection-service-ingress
+  namespace: recipe-app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: collection-service.k8s.bieggerm.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: collection-service
+                port:
+                  number: 8086
