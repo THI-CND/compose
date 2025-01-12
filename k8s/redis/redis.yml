@@ -47,9 +47,9 @@ spec:
 ---
 apiVersion: v1
 kind: ConfigMap
-namespace: recipe-app
 metadata:
   name: redis-config
+  namespace: recipe-app 
 data:
   redis.conf: |
     requirepass password
