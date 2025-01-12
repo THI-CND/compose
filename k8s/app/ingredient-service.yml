@@ -7,7 +7,7 @@ metadata:
   namespace: recipe-app
 spec:
   ports:
-    - port: 8083
+    - port: 8080
       name: http
   selector:
     app: ingredient-service
@@ -32,7 +32,7 @@ spec:
         - name: ingredient-service
           image: ghcr.io/thi-cnd/ingredient_service:latest
           ports:
-            - containerPort: 8083
+            - containerPort: 8080
           env:
             - name: DB_URL
               value: jdbc:postgresql://postgres:5432/ingredient
@@ -68,4 +68,4 @@ spec:
               service:
                 name: ingredient-service
                 port:
-                  number: 8083
+                  number: 8080
