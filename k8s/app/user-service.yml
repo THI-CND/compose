@@ -6,8 +6,10 @@ metadata:
   namespace: recipe-app
 spec:
   ports:
-    - port: 8080
+    - port: 8082
       name: http
+    - port: 8081
+      name: grpc
   selector:
     app: user-service
 
@@ -32,6 +34,7 @@ spec:
           image: ghcr.io/thi-cnd/user_service:latest
           ports:
             - containerPort: 8082
+            - containerPort: 8081
           env:
             - name: DB_HOST
               value: "postgres"
