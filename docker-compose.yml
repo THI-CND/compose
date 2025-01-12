@@ -62,6 +62,7 @@ services:
       - "50051:50051" 
     environment:
         SECRET_KEY_DJANGO: django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg
+        DJANGO_SETTINGS_MODULE: config.settings.development
         DB_NAME: collection
         DB_USER: postgres
         DB_PASSWORD: password
@@ -73,7 +74,8 @@ services:
         RABBITMQ_PORT: 5672
         RABBITMQ_EXCHANGE: recipemanagement
         RABBITMQ_ROUTING_KEYS_COLLECTION: collection.created,collection.updated,collection.deleted
-        USE_TEST_DB: False
+        GRPC_HOST_RECIPE_SERVICE: recipe-service
+        GRPC_PORT_RECIPE_SERVICE: 9098
     restart: unless-stopped
     depends_on:
      postgres:
@@ -102,7 +104,6 @@ services:
         RABBITMQ_QUEUE_COLLECTION: collection.queue
         RABBITMQ_QUEUE_REVIEW: review.queue
         RABBITMQ_QUEUE_USER: user.queue
-        JAVA_TOOL_OPTIONS: "-XX:UseSVE=0" #Fix for ARM64 Bug
     restart: unless-stopped
     depends_on:
      postgres:
