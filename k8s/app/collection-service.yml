@@ -1,4 +1,3 @@
-
 ---
 apiVersion: v1
 kind: Service
@@ -41,6 +40,8 @@ spec:
           env:
             - name: SECRET_KEY_DJANGO
               value: "django-insecure-vm$+=b8+s&54m6*yz*h&7m2b0nq_+ujg30akgs%+v5jw!p_=xg"
+            - name: DJANGO_SETTINGS_MODULE
+              value: "config.settings.development"
             - name: DB_NAME
               value: "collection"
             - name: DB_USER
@@ -63,8 +64,10 @@ spec:
               value: "recipemanagement"
             - name: RABBITMQ_ROUTING_KEYS_COLLECTION
               value: "collection.created,collection.updated,collection.deleted"
-            - name: USE_TEST_DB
-              value: "False"
+            - name: GRPC_HOST_RECIPE_SERVICE
+              value: "recipe-service"
+            - name: GRPC_PORT_RECIPE_SERVICE
+              value: "9090"
 
 ---
 apiVersion: networking.k8s.io/v1
