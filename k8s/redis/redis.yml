@@ -47,6 +47,7 @@ spec:
 ---
 apiVersion: v1
 kind: ConfigMap
+namespace: recipe-app
 metadata:
   name: redis-config
 data:
