@@ -20,7 +20,7 @@ spec:
         image: redis:latest
         volumeMounts:
         - name: redis-config-volume
-          mountPath: /redis-master 
+          mountPath: /etc/redis 
         ports:
         - containerPort: 6379
       volumes:
