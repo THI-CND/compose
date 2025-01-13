@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: collection-service
-          image: ghcr.io/thi-cnd/collection_service:latest
+          image: ghcr.io/thi-cnd/collection_service:v1.4.2
           ports:
             - containerPort: 8000
             - containerPort: 50051
