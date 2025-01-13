@@ -53,6 +53,10 @@ spec:
               value: "guest"
             - name: RABBITMQ_PASSWORD
               value: "guest"
+            - name: FLUENTD_HOST
+              value: "fluent-bit"
+            - name: FLUENTD_PORT
+              value: "9880"
 
 ---
 apiVersion: networking.k8s.io/v1

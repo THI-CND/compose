@@ -64,7 +64,7 @@ services:
 
   collection-service:
     pull_policy: always
-    image: ghcr.io/thi-cnd/collection_service:v1.3.0-next.7
+    image: ghcr.io/thi-cnd/collection_service:latest
     ports:
       - "8000:8000"
       - "50051:50051" 
@@ -195,6 +195,8 @@ services:
       RABBITMQ_PORT: 5672
       RABBITMQ_USERNAME: guest
       RABBITMQ_PASSWORD: guest
+      FLUENTD_HOST: fluent-bit
+      FLUENTD_PORT: 9880
     ports:
       - "8085:8080"
 

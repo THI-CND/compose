@@ -61,7 +61,6 @@ spec:
             - name: FLUENTD_PORT
               value: "9880"
 
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
