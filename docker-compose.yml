@@ -1,6 +1,8 @@
 services:
   postgres:
     build: .
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -64,7 +66,7 @@ services:
 
   collection-service:
     pull_policy: always
-    image: ghcr.io/thi-cnd/collection_service:latest
+    image: ghcr.io/thi-cnd/collection_service:v1.4.2
     ports:
       - "8000:8000"
       - "50051:50051" 
@@ -183,7 +185,8 @@ services:
       - rabbitmq
 
   feed-service:
-    image: ghcr.io/thi-cnd/feed_service:v0.8.1
+    pull_policy: always
+    image: ghcr.io/thi-cnd/feed_service:latest
     restart: unless-stopped
     environment:
       RECIPE_SERVICE_URL: recipe-service:9090
@@ -200,5 +203,5 @@ services:
     ports:
       - "8085:8080"
 
-
-  
+volumes:
+  postgres_data:
