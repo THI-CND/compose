@@ -9,6 +9,14 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,users,ingredient,review
 
+  fluent-bit:
+    image: fluent/fluent-bit:latest
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit.conf
+    command: ["-c", "/fluent-bit.conf"]
+    ports:
+      - "9880:9880"
+
   redis:
     image: redis/redis-stack:latest
     restart: unless-stopped
@@ -128,12 +136,13 @@ services:
       RABBIT_PORT: 5672
       RABBIT_USER: guest
       RABBIT_PASSWORD: guest
+      FLUENTD_HOST: fluent-bit
+      FLUENTD_PORT: 9880
     restart: unless-stopped
     depends_on:
-     postgres:
-       condition: service_started
-     rabbitmq:
-       condition: service_healthy
+      - postgres
+      - rabbitmq
+      - fluent-bit
 
   ingredient-service:
     pull_policy: always
