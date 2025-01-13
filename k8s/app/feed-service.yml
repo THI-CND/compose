@@ -38,7 +38,7 @@ spec:
             - name: RECIPE_SERVICE_URL
               value: "recipe-service:9090"
             - name: COLLECTION_SERVICE_URL
-              value: "http://collection-service:8000/collections"
+              value: "http://collection-service:8000/api/v1/collections"
             - name: REDIS_HOST
               value: "redis"
             - name: REDIS_PORT
