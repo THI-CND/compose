@@ -126,7 +126,7 @@ services:
       - 8082:8082
       - 9092:8081
     environment:
-      GIN_MODE: debug
+      GIN_MODE: release
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
