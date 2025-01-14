@@ -65,6 +65,10 @@ spec:
               value: "review.queue"
             - name: RABBITMQ_QUEUE_USER
               value: "user.queue"
+            - name: GRPC_USER_SERVICE_HOST
+              value: "user-service"
+            - name: GRPC_USER_SERVICE_PORT
+              value: "8081"
 
 ---
 apiVersion: networking.k8s.io/v1
