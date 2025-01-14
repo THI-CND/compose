@@ -114,6 +114,8 @@ services:
         RABBITMQ_QUEUE_COLLECTION: collection.queue
         RABBITMQ_QUEUE_REVIEW: review.queue
         RABBITMQ_QUEUE_USER: user.queue
+        GRPC_USER_SERVICE_HOST: user-service
+        GRPC_USER_SERVICE_PORT: 8081
     restart: unless-stopped
     depends_on:
      postgres:
