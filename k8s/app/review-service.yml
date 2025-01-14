@@ -51,6 +51,10 @@ spec:
               value: "guest"
             - name: RABBIT_PASSWORD
               value: "guest"
+            - name: RABBIT_EXCHANGE
+              value: "recipemanagement"
+            - name: USER_SERVICE_ADDRESS
+              value: "user-service:9090"
 
 ---
 apiVersion: networking.k8s.io/v1

@@ -51,6 +51,8 @@ spec:
               value: guest
             - name: RABBIT_PASSWORD
               value: guest
+            - name: RABBIT_EXCHANGE
+              value: recipemanagement
 
 ---
 apiVersion: networking.k8s.io/v1
