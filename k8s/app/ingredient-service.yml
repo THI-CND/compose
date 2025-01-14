@@ -9,6 +9,8 @@ spec:
   ports:
     - port: 8080
       name: http
+    - port: 9090
+      name: grpc
   selector:
     app: ingredient-service
 
@@ -33,6 +35,7 @@ spec:
           image: ghcr.io/thi-cnd/ingredient_service:latest
           ports:
             - containerPort: 8080
+            - containerPort: 9090
           env:
             - name: DB_URL
               value: jdbc:postgresql://postgres:5432/ingredient
