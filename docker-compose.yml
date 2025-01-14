@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,users,ingredient,review
+      POSTGRES_MULTIPLE_DATABASES: recipe,collection,notification,users,ingredient,review,shoppinglist
 
   fluent-bit:
     image: fluent/fluent-bit:latest
@@ -202,6 +202,23 @@ services:
       FLUENTD_PORT: 9880
     ports:
       - "8085:8080"
+
+  shoppinglist-service:
+    pull_policy: always
+    image: ghcr.io/thi-cnd/shoppinglist_service:latest
+    restart: unless-stopped
+    ports:
+      - "8086:3000"
+      - "9096:9009"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: shoppinglist
+      RABBIT_URL: amqp://guest:guest@rabbitmq:5672/
+      RECIPE_SERVICE_ADDRESS: recipe-service:9090
+      RABBIT_EXCHANGE: recipemanagement
 
 volumes:
   postgres_data:
