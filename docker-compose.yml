@@ -184,7 +184,7 @@ services:
       RABBIT_USER: guest
       RABBIT_PASSWORD: guest
       RABBIT_EXCHANGE: recipemanagement
-      USER_SERVICE_ADDRESS: user-service:9090
+      USER_SERVICE_ADDRESS: user-service:8081
     depends_on:
       - postgres
       - rabbitmq
