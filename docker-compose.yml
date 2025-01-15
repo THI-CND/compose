@@ -225,5 +225,18 @@ services:
       RECIPE_SERVICE_ADDRESS: recipe-service:9090
       RABBIT_EXCHANGE: recipemanagement
 
+  frontend:
+    pull_policy: always
+    image: ghcr.io/thi-cnd/frontend:latest
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
 volumes:
   postgres_data:
