@@ -3,4 +3,5 @@ Um das Gesamtprojekt Recipe Management mithilfe von Docker Compose zu starten, k
 ```bash
 sudo docker compose up
 ```
-Die Benutzeroberfläche der Anwendung wird nach kurzer Zeit unter der Adresse http://localhost/ zur Verfügung stehen.
+Die Benutzeroberfläche der Anwendung wird nach kurzer Zeit unter der Adresse http://localhost/ zur Verfügung stehen.\
+Der Standardnutzer lautet `user1` mit Passwort `password`.
