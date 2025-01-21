@@ -101,6 +101,7 @@ services:
       - "8081:8080"
       - "9091:9090"
     environment:
+        SPRING_PROFILES_ACTIVE: production
         DB_URL: jdbc:postgresql://postgres:5432/notification
         DB_USER: postgres
         DB_PASSWORD: password
