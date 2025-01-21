@@ -47,6 +47,7 @@ services:
       - "8088:8080"
       - "9098:9090"
     environment:
+      SPRING_PROFILES_ACTIVE: production
       DB_URL: jdbc:postgresql://postgres:5432/recipe
       DB_USER: postgres
       DB_PASSWORD: password
